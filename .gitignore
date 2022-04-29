@@ -1,5 +1,6 @@
 /*
 !/cli
+!/desktop
 !.gitignore
 !build.gradle.kts
 !settings.gradle.kts

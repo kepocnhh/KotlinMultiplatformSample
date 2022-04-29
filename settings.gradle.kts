@@ -1,3 +1,3 @@
 rootProject.name = "KotlinMultiplatformSample"
 
-include("cli")
+include("cli", "desktop")
