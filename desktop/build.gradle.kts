@@ -30,7 +30,7 @@ compose.desktop {
         mainClass = "test.kmp.desktop.AppKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg) // TargetFormat.Msi, TargetFormat.Deb
+            targetFormats(TargetFormat.Dmg, TargetFormat.Deb) // TargetFormat.Msi
             packageName = "test.kmp.desktop"
 //            packageVersion = "0.0.1"
         }
