@@ -1,24 +1,24 @@
 repositories.mavenCentral()
 
 plugins {
-    id("application")
-    id("org.jetbrains.kotlin.jvm")
+    id("org.jetbrains.kotlin.multiplatform")
 }
 
-dependencies {
-    // todo
-}
+kotlin {
+    macosArm64 {
+        binaries {
+            executable {
+                entryPoint = "test.kmp.cli.main"
+            }
+        }
 
-application {
-    mainClass.set("test.kmp.cli.AppKt")
-}
-
-val jvmTarget = "1.8"
-
-tasks.getByName<JavaCompile>("compileJava") {
-    targetCompatibility = jvmTarget
-}
-
-tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin") {
-    kotlinOptions.jvmTarget = jvmTarget
+        sourceSets {
+            val sourceSet = create("main") {
+                dependencies {
+                    // todo
+                }
+            }
+            get("${name}Main").dependsOn(sourceSet)
+        }
+    }
 }

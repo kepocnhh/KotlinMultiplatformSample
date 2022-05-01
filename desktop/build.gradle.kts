@@ -4,25 +4,23 @@ repositories.mavenCentral()
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.compose") version "1.1.1"
+    id("org.jetbrains.compose") version Version.compose
 }
 
-val jvmTarget = "1.8"
-
 kotlin {
-    jvm("desktop") {
-        val target = name
+    jvm(name) {
         compilations.all {
-            kotlinOptions.jvmTarget = jvmTarget
+            kotlinOptions.jvmTarget = Version.jvmTarget
         }
+
         sourceSets {
-            val main = create("main") {
+            val sourceSet = create("main") {
                 dependencies {
                     implementation(compose.desktop.currentOs)
-                    implementation("org.jetbrains.compose.ui:ui-desktop:1.1.1")
+                    implementation("org.jetbrains.compose.ui:ui-desktop:${Version.compose}")
                 }
             }
-            get("${target}Main").dependsOn(main)
+            get("${name}Main").dependsOn(sourceSet)
         }
     }
 }
