@@ -6,5 +6,6 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":common"))
     implementation(compose.desktop.common)
 }

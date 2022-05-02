@@ -1,37 +1,33 @@
 repositories.mavenCentral()
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.jvm")
+    id("org.gradle.application")
 }
 
-kotlin {
-//    macosArm64 {
-//        binaries {
-//            executable {
-//                entryPoint = "test.kmp.cli.main"
-//            }
-//        }
-//
-//        sourceSets {
-//            val sourceSet = create("main") {
-//                dependencies {
-//                    // todo
-//                }
-//            }
-//            get("${name}Main").dependsOn(sourceSet)
-//        }
-//    }
+application {
+    mainClass.set("test.kmp.cli.AppKt")
+}
 
-    val sourceSet = sourceSets.create("main") {
-        dependencies {
-            // todo
-        }
-    }
+dependencies {
+    implementation(project(":common"))
+}
 
-    setOf(macosArm64(), linuxX64()).forEach { target ->
-        target.binaries.executable {
-            entryPoint = "test.kmp.cli.main"
-        }
-        sourceSets["${target.name}Main"].dependsOn(sourceSet)
+tasks.getByName<JavaCompile>("compileJava") {
+    targetCompatibility = Version.jvmTarget
+}
+
+tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin") {
+    kotlinOptions.jvmTarget = Version.jvmTarget
+}
+
+task<Jar>("assembleJar") {
+    with(tasks.getByName<Jar>("jar"))
+    archiveBaseName.set("test.kmp.cli") // todo
+    archiveVersion.set("0.0.1") // todo
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(mapOf("Main-Class" to application.mainClass))
     }
+    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
