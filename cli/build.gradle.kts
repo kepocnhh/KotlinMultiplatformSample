@@ -5,6 +5,11 @@ plugins {
     id("org.gradle.application")
 }
 
+java {
+    sourceCompatibility = JavaVersion.toVersion(Version.jvmTarget)
+    targetCompatibility = sourceCompatibility
+}
+
 application {
     mainClass.set("test.kmp.cli.AppKt")
 }
@@ -14,7 +19,8 @@ dependencies {
 }
 
 tasks.getByName<JavaCompile>("compileJava") {
-    targetCompatibility = Version.jvmTarget
+    sourceCompatibility = Version.jvmTarget
+    targetCompatibility = sourceCompatibility
 }
 
 tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin") {
