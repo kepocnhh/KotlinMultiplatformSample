@@ -7,6 +7,5 @@ plugins {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":compose"))
-    implementation(compose.desktop.common)
+    implementation("org.jetbrains.compose.foundation:foundation:${Version.compose}")
 }

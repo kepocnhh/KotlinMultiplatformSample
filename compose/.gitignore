@@ -1,0 +1,7 @@
+/*
+!/android
+!/desktop
+!/src
+!.gitignore
+!android.kts
+!build.gradle.kts

@@ -1,10 +1,14 @@
 package test.kmp.desktop
 
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import test.kmp.common.Foo
+import test.kmp.compose.presentation.module.NoteList
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import test.kmp.compose.presentation.util.Theme
 
 fun main() {
     application {
@@ -13,10 +17,15 @@ fun main() {
             state = rememberWindowState(),
             title = "test.kmp.desktop"
         ) {
-            BasicText(
-                text = "Hello (${Foo.getBar()}) desktop!"
-            )
-            // todo
+            Theme {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Theme.colors.background)
+                ) {
+                    NoteList.Screen()
+                }
+            }
         }
     }
 }

@@ -9,6 +9,9 @@ buildscript {
                     repositories.google()
                     classpath("com.android.tools.build:gradle:7.1.3")
                 }
+                Target.DESKTOP -> {
+                    classpath("org.jetbrains.compose:compose-gradle-plugin:${Version.compose}")
+                }
             }
         }
     }

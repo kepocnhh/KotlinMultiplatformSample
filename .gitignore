@@ -3,6 +3,7 @@
 !/buildSrc
 !/cli
 !/common
+!/compose
 !/desktop
 !.gitignore
 !build.gradle.kts

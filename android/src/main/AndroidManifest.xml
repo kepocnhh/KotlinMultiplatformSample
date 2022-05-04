@@ -2,6 +2,7 @@
     package="test.kmp.android">
 
     <application
+        android:name=".App"
         android:theme="@style/App.Theme"
         android:label="KotlinMultiplatformSample">
         <activity android:name=".MainActivity"
